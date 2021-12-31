@@ -1,0 +1,50 @@
+<h2>Angular Reactive Forms and Validation </h2>
+<br>
+<div class="container">
+  <div class="row">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <h3 class="text-center">User Login Form</h3>
+  <!--Email-->
+ <div class="form-group">
+   <label for="email">Email</label>
+   <input formControlName='email' type="text" class="form-control">
+   <!--Error Message-->
+   <div *ngIf="f.email.invalid && f.email.touched" 
+   class="alert alert-danger"> 
+    <span class="error" *ngIf="f.email.errors?.required">Email is required. </span>
+   <span class="error" *ngIf="f.email.errors?.minlength">Email should be minimum 4 characters. </span>
+   <span class="error" *ngIf="f.email.errors?.email">Enter valid Email address. </span>
+  </div>
+ </div>
+     <!--age-->
+     <div class="form-group">
+      <label for="age">Age</label>
+      <input formControlName='age' type="text" class="form-control">
+      <!--Error Message-->
+      <div *ngIf="f.age.invalid && f.age.touched" 
+      class="alert alert-danger"> 
+       <span class="error" *ngIf="f.age.errors?.required">Age is required. </span>
+      <span class="error" *ngIf="f.age.errors?.min"> You are under 18 to use this app. </span>
+      <span class="error" *ngIf="f.age.errors?.max">You are not eligible for this app </span>
+     </div>
+    </div>
+  <!--Password-->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input formControlName='password' type="password" class="form-control">
+    <!--Error Message-->
+    <div *ngIf="f.password.invalid && f.password.touched" 
+    class="alert alert-danger"> 
+     <span class="error" *ngIf="f.password.errors?.required">Password is required. </span>
+    <span class="error" *ngIf="f.password.errors?.minlength">Password must be at least 6 characters. </span>
+    <span class="error" *ngIf="f.password.errors?.pattern">Password must be validated. </span>
+  </div>
+  </div>
+
+<br>
+<button class="btn btn-primary" type="loginUser" [disabled]="loginForm.invalid"> Login </button>
+
+  </form>
+
+  </div>
+</div>
